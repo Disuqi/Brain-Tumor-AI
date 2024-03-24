@@ -2,6 +2,6 @@ gunicorn
 flask
 tensorflow
 imutils
-PIL
+pillow
 numpy
 opencv-python
