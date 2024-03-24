@@ -1,1 +1,7 @@
 gunicorn
+flask
+tensorflow
+imutils
+PIL
+numpy
+opencv-python
