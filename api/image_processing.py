@@ -1,25 +1,7 @@
-from flask import Flask, jsonify, request
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image
-from PIL import Image
-import matplotlib.pyplot as plt
-import numpy as np
-from flask_cors import CORS
 import cv2
 import imutils
-
-app = Flask(__name__)
-CORS(app)
-
-brain_tumor_model = load_model("../final_model.h5")
-
-@app.route('/api/v1/models/brain_tumor', methods=["POST"])
-def detect_brain_tumor():
-    data = request.files['image']
-    image = process_image(data)
-    prediction = brain_tumor_model.predict(image)
-    result = numToLabel(np.argmax(prediction))
-    return jsonify(result), 200
+from PIL import Image
+import numpy as np
 
 def process_image(file_storage, target_size=(200, 200)):
     loaded_img = Image.open(file_storage)
@@ -64,17 +46,3 @@ def apply_filters(img, image_size=(200, 200)):
     img = cv2.applyColorMap(img, cv2.COLORMAP_BONE)
     img = cv2.resize(img, image_size)
     return img
-
-def numToLabel(num):
-    if num == 0:
-        return "Glioma"
-    elif num == 1:
-        return "Meningioma"
-    elif num == 2:
-        return "No Tumor"
-    elif num == 3:
-        return "Pituitary"
-
-if __name__ == '__main__':
-    app.run(debug=True)
-    
