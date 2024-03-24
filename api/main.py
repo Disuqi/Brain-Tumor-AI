@@ -11,7 +11,7 @@ import imutils
 app = Flask(__name__)
 CORS(app)
 
-brain_tumor_model = load_model("/final_model.h5")
+brain_tumor_model = load_model("../final_model.h5")
 
 @app.route('/api/v1/models/brain_tumor', methods=["POST"])
 def detect_brain_tumor():
