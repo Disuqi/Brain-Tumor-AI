@@ -1,4 +1,5 @@
 combined_datasets
 datasets
 models
+logs
 __pycache__
