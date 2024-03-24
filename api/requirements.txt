@@ -6,3 +6,4 @@ imutils
 pillow
 numpy
 opencv-python
+python-dotenv

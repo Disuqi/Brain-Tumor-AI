@@ -11,6 +11,10 @@ CORS(app)
 
 brain_tumor_model = load_model("../final_model.h5")
 
+@app.get('/test')
+def test():
+    return jsonify(["Test was successful"]), 200
+
 @app.post('/api/v1/models/brain_tumor')
 def detect_brain_tumor():
     data = request.files['image']
